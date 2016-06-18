@@ -17,7 +17,7 @@ public class SimilarityFinderTest {
 	double value;
 	
 	SimilarityFinder finder;
-	SequenceSearcher searcher;
+	SequenceSearcher searcher = new SequenceSearcherImpl();
 	
 	
 	@Before
@@ -50,6 +50,15 @@ public class SimilarityFinderTest {
 		
 		value = finder.calculateJackardSimilarity(seq1, seq2);
 		assertThat(value, equalTo((double)2/(double)3));
+	}
+
+	@Test
+	public void calculateSimilarityBothTheSameTest(){
+		seq1= new int[]{1,2,3};
+		seq2= new int[]{1,2,3};
+		
+		value = finder.calculateJackardSimilarity(seq1, seq2);
+		assertThat(value, equalTo((double)3/(double)3));
 	}
 
 }
